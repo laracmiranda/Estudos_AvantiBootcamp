@@ -1,2 +1,2 @@
-# Aula 02 - Git e Github
-Aula sobre o funcionamento do Git e Github
+# Aulas iniciais do Bootcamp
+Aulas iniciais de nivelamento do Bootcamp de Full Stack da Atlântico Avanti
