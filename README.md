@@ -1,2 +1,2 @@
-# projeto_inicial_AvantiBootcamp
-Projeto inicial das aulas de nivelamento do Bootcamp Full Stack da Atlântico Avanti
+# Aula 02 - Git e Github
+Aula sobre o funcionamento do Git e Github
