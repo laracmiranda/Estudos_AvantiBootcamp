@@ -1,0 +1,32 @@
+body {
+    background-color: antiquewhite;
+}
+
+#container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    width: 200px;
+    text-align: center;
+    margin: 20px; /* espaçamento de fora */
+    padding: 20px; /* espaçamento de dentro */
+}
+
+.card img {
+    width: 120px;
+    height: 120px;
+}
+
+.card h3 {
+    font-size: 20px;
+}
+
+.titulo {
+    text-align: center;
+}
