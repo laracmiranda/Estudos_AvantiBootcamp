@@ -14,6 +14,8 @@ Repositório com os resumos das aulas iniciais de nivelamento do Bootcamp de Ful
 ## 📚 Aulas ao Vivo
 
 - [**Aula 01 - Modelagem de Banco de Dados**](./Aulas%20ao%20Vivo/Aula%2001%20-%20Modelagem%20de%20Banco%20de%20Dados/README.md)
+- [**Aula 02 - Introdução ao Desenvolvimento Backend**](./Aulas%20ao%20Vivo/Aula%2002%20-%20Introdução%20ao%20Desenvolvimento%20Backend/README.md)
+- [**Atividade de Banco de Dados**](./Aulas%20ao%20Vivo/Atividade%20de%20Banco%20de%20Dados/Atividade%2001%20-%20Banco%20de%20Dados%20-%20DFS%202025.2%20-%20Lara%20Corsini.pdf)
 
 ---
 
