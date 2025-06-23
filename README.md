@@ -6,7 +6,7 @@ Repositório com os resumos das aulas iniciais de nivelamento do Bootcamp de Ful
 
 ## 📚 Aulas
 
-### Aula 02 - Git e GitHub
+### Aula 01 - Git e GitHub
 
 Nessa aula aprendemos sobre:
 
@@ -33,7 +33,7 @@ Nessa aula aprendemos sobre:
 
 ---
 
-### Aula 03 - HTML e CSS
+### Aula 02 - HTML e CSS
 
 Nessa aula vimos:
 
@@ -47,7 +47,7 @@ Nessa aula vimos:
 
 ---
 
-### Aula 04 - JavaScript
+### Aula 03 - JavaScript
 
 Principais tópicos abordados:
 
