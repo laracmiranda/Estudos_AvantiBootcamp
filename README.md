@@ -13,7 +13,7 @@ Repositório com os resumos das aulas iniciais de nivelamento do Bootcamp de Ful
 
 ## 📚 Aulas ao Vivo
 
-**Aula 01 - Modelagem de Banco de Dados**
+- [**Aula 01 - Modelagem de Banco de Dados**](./Aulas%20ao%20Vivo/Aula%2001%20-%20Modelagem%20de%20Banco%20de%20Dados/README.md)
 
 ---
 
