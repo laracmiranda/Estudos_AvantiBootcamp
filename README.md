@@ -6,9 +6,9 @@ Repositório com os resumos das aulas iniciais de nivelamento do Bootcamp de Ful
 
 ## 📚 Aulas Nivelamento
 
-- [Aula 01 – Git e GitHub](./Aulas%20Nivelamento/Aula%2001%20-%20Git%20e%20Github/README.md)
-**Aula 02 - HTML e CSS**
-**Aula 03 - JavaScript**
+- [**Aula 01 – Git e GitHub**](./Aulas%20Nivelamento/Aula%2001%20-%20Git%20e%20Github/README.md)
+- [**Aula 02 - HTML e CSS**](./Aulas%20Nivelamento/Aula%2002%20-%20Html%20e%20CSS/README.md)
+- [**Aula 03 - JavaScript**](./Aulas%20Nivelamento/Aula%2003%20-%20JavaScript/README.md)
 
 
 ## 📚 Aulas ao Vivo
