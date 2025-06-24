@@ -1,50 +1,55 @@
-import express, { response } from "express"
+import express from "express"
+import pg from "pg"
 
 const app = express();
 app.use(express.json());
 
-const usuarios = [
-    {id: 1, nome: "Lara", idade: 24},
-    {id: 2, nome: "Luci", idade: 55},
-    {id: 3, nome: "Agnaldo", idade: 58}
-]
+// Faz a conexão com o banco de dados
+const { Pool } = pg;
+const pool = new Pool ({
+    user: "",
+    password: "",
+    host: "localhost",
+    port: 5432,
+    database: ""
+})
 
 // Método GET - Puxa os dados
-app.get("/usuarios", (request, response) => {
-    return response.json(usuarios).status(200);
+app.get("/usuarios", async (request, response) => {
+    const usuarios = await pool.query("SELECT * FROM usuarios");
+    return response.json(usuarios.rows).status(200);
 })
 
 // Método POST - Insere novos dados
-app.post("/usuarios", (request, response) => {
-    const {id, nome, idade} = request.body;
-    usuarios.push({id, nome, idade});
-    return response.json(usuarios).status(201);
+app.post("/usuarios", async (request, response) => {
+    const { nome, email, telefone } = request.body;
+    const usuario = await pool.query("INSERT INTO usuarios (nome, email, telefone) VALUES ($1, $2, $3)", [nome, email, telefone])
+    return response.json(usuario).status(201);
 })
 
 // Método PUT - Atualiza os dados
-app.put("/usuarios/:id", (request, response) => {
-    const {nome, idade} = request.body;
+app.put("/usuarios/:id", async (request, response) => {
+    const { nome, email, telefone } = request.body;
     const { id } = request.params;
-
-    const index = usuarios.findIndex(u => u.id == id);
-    if(index == -1){
-        return response.status(404).json({message: "Usuário não encontrado"});
+    const user = await pool.query("SELECT * FROM usuarios WHERE id = $1", [id]);
+    if (user.rowCount < 1){
+        return response.status(404).json("Usuário não encontrado");
     }
+    const usuarios = await pool.query("UPDATE usuarios SET nome = $1, email = $2, telefone = $3 WHERE id = $4", [nome, email, telefone, id])
 
-    usuarios[index] = {id, nome, idade};
-
-    return response.json({id, nome, idade}).status(200);
+    return response.json().status(200);
 })
 
 // Método DELETE - Deleta os dados
-app.delete("/usuarios/:id", (request, response) => {
+app.delete("/usuarios/:id", async (request, response) => {
     const { id } = request.params;
 
-    const index = usuarios.findIndex(u => u.id == id);
-    if(index == -1){
-        return response.status(404).json({message: "Usuário não encontrado"});
+    const user = await pool.query("SELECT * FROM usuarios WHERE id = $1", [id]);
+    if (user.rowCount < 1){
+        return response.status(404).json("Usuário não encontrado");
     }
-    usuarios.splice(index, 1);
+    const usuarios = await pool.query("DELETE FROM usuarios WHERE id = $1", [id]);
+
     return response.status(204).send();
 })
 

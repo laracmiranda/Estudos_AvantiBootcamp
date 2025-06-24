@@ -1,6 +1,6 @@
 # 📘 Aula 02 – Introdução ao Desenvolvimento Backend
 
-> Resumo dos principais conceitos sobre HTTP, status codes, métodos, APIs e REST.
+> Resumo dos principais conceitos sobre HTTP, status codes, métodos, APIs e REST. Também desenvolvemos uma API Básica com Node.js e Express
 
 ---
 
@@ -90,3 +90,55 @@
   - Recursos acessíveis via **URLs**
   - Comunicação via **JSON**
   - Stateless: cada requisição é isolada
+
+
+## ⚙️ Configuração Inicial
+
+1. Criamos o arquivo `index.js` para rodar o Node localmente e testar as requisições.
+2. Testamos inicialmente com **variáveis temporárias** (sem banco de dados).
+3. Instalamos as dependências:
+   - [Node.js](https://nodejs.org/)
+   - [Express](https://expressjs.com/)
+   - [Nodemon](https://www.npmjs.com/package/nodemon)
+
+---
+
+Também configuramos a **porta local** da aplicação para o servidor.
+
+🧪 As requisições foram testadas com o [Insomnia](https://insomnia.rest/), que simula chamadas HTTP e facilita a visualização das respostas.
+
+> 🔸 O código desta etapa com dados temporários está no arquivo `index_old.js`.
+
+---
+
+## 🗄️ Integração com Banco de Dados
+
+Para tornar a API funcional de verdade:
+
+- Conectamos a aplicação com o banco de dados PostgreSQL, previamente criado no DBeaver.
+- Instalamos o pacote `pg` para realizar a conexão. 
+- Substituímos os dados temporários por operações reais no banco de dados.
+
+---
+
+## ⏳ Async/Await
+
+- Utilizamos **`async` e `await`** para lidar com operações assíncronas, especialmente nas chamadas ao banco de dados.
+- Isso permite que a aplicação **aguarde respostas externas** (como do PostgreSQL) antes de continuar a execução.
+
+> 🔸 O código dessa parte está no arquivo `index.js`.
+
+---
+
+## 🛡️ Segurança com Variáveis de Ambiente
+
+Ponto importante:
+
+- Informações sensíveis como usuário, senha e porta do banco **não devem estar no código principal**.
+- Utilizamos um arquivo `.env` para armazenar essas variáveis com segurança.
+- Adicionamos o `.env` ao `.gitignore` para garantir que **não sejam versionadas no GitHub**.
+
+---
+
+📌 *Essa prática fez parte da etapa introdutória ao desenvolvimento backend com Node.js, Express e PostgreSQL.*
+
