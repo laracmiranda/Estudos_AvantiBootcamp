@@ -1,6 +1,6 @@
 # 📘 Aula 02 – Introdução ao Desenvolvimento Backend
 
-> Resumo dos principais conceitos sobre HTTP, status codes, métodos, APIs e REST. Também desenvolvemos uma API Básica com Node.js e Express
+> Resumo dos principais conceitos sobre HTTP, status codes, métodos, APIs e REST. 
 
 ---
 
@@ -91,6 +91,10 @@
   - Comunicação via **JSON**
   - Stateless: cada requisição é isolada
 
+---
+
+# 👩‍💻 Parte Prática da Aula
+> Desenvolvendo uma API Básica com Node.js e Express
 
 ## ⚙️ Configuração Inicial
 
