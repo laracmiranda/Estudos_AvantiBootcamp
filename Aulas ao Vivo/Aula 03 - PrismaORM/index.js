@@ -9,11 +9,11 @@ app.use(express.json());
 // Faz a conexão com o banco de dados
 const { Pool } = pg;
 const pool = new Pool ({
-    user: "postgres",
-    password: "adminlara",
+    user: "",
+    password: "",
     host: "localhost",
     port: 5432,
-    database: "avanti"
+    database: ""
 })
 
 // Método GET - Puxa os dados
