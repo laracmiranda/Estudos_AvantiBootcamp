@@ -1,57 +1,67 @@
 import express from "express"
-import pg from "pg"
 import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({log: ["query","error"]});
 const app = express();
 app.use(express.json());
 
-// Faz a conexão com o banco de dados
-const { Pool } = pg;
-const pool = new Pool ({
-    user: "",
-    password: "",
-    host: "localhost",
-    port: 5432,
-    database: ""
-})
 
 // Método GET - Puxa os dados
 app.get("/usuarios", async (request, response) => {
-    // const usuarios = await pool.query("SELECT * FROM usuarios");
-    const usuarios = await prisma.usuarios.findMany();
-    return response.json(usuarios).status(200);
+    const usuarios = await prisma.user.findMany();
+    return response.status(200).json(usuarios);
 })
 
 // Método POST - Insere novos dados
 app.post("/usuarios", async (request, response) => {
-    const { nome, email, telefone } = request.body;
-    const usuario = await pool.query("INSERT INTO usuarios (nome, email, telefone) VALUES ($1, $2, $3)", [nome, email, telefone])
-    return response.json(usuario).status(201);
+    const { name, email, phone } = request.body;
+
+    const usuarios = await prisma.user.create({
+        data:{ 
+            name, email, phone
+        }
+})
+    return response.status(201).json(usuarios);
 })
 
 // Método PUT - Atualiza os dados
 app.put("/usuarios/:id", async (request, response) => {
-    const { nome, email, telefone } = request.body;
+    const { name, email, phone } = request.body;
     const { id } = request.params;
-    const user = await pool.query("SELECT * FROM usuarios WHERE id = $1", [id]);
-    if (user.rowCount < 1){
-        return response.status(404).json("Usuário não encontrado");
-    }
-    const usuarios = await pool.query("UPDATE usuarios SET nome = $1, email = $2, telefone = $3 WHERE id = $4", [nome, email, telefone, id])
 
-    return response.json().status(200);
+    const user = await prisma.user.findUnique({
+        where: { id }
+    })
+
+    if (!user){
+        return response.status(404).json("Usuário nao encontrado");
+    }
+
+    const usuarios = await prisma.user.update({
+        where: { id },
+        data:{
+            name, email, phone
+        }
+    })
+
+    return response.status(200).json(usuarios);
 })
 
 // Método DELETE - Deleta os dados
 app.delete("/usuarios/:id", async (request, response) => {
     const { id } = request.params;
 
-    const user = await pool.query("SELECT * FROM usuarios WHERE id = $1", [id]);
-    if (user.rowCount < 1){
-        return response.status(404).json("Usuário não encontrado");
+    const user = await prisma.user.findUnique({
+        where: { id }
+    })
+
+    if (!user){
+        return response.status(404).json("Usuário nao encontrado");
     }
-    const usuarios = await pool.query("DELETE FROM usuarios WHERE id = $1", [id]);
+
+    await prisma.user.delete({
+        where: { id }
+    });
 
     return response.status(204).send();
 })
