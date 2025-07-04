@@ -19,6 +19,8 @@ model User {
   id        String     @id @default(uuid())
   name      String     @db.VarChar(100)
   email     String     @unique @db.VarChar(100)
+  password  String     
+  isAdmin   Boolean    @default(false)
   phone     String?    @db.VarChar(20)
   user_tech UserTech[]
 

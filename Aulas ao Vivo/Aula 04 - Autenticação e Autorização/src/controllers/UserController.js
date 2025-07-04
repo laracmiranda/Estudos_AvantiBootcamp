@@ -1,19 +1,25 @@
 import { prismaClient } from "../../database/PrismaClient.js";
+import bcrypt from "bcryptjs";
 
 export class UserController { 
 
     async findAllUsers (request, response) {
-    const usuarios = await prismaClient.user.findMany();
+    const usuarios = await prismaClient.user.findMany({
+        select: {id: true, name: true, email: true, phone: true, isAdmin: true}
+    });
     return response.status(200).json(usuarios);
 }
 
     async createUser (request, response) {
-        const { name, email, phone } = request.body;
+        const { name, email, password, isAdmin, phone } = request.body;
+
+        const passhash = bcrypt.hashSync(password, 10);
     
         const usuarios = await prismaClient.user.create({
             data:{ 
-                name, email, phone
-            }
+                name: name, email, phone, password: passhash, isAdmin
+            },
+            select: {id: true, name: true, email: true, phone: true, isAdmin: true}
     })
         return response.status(201).json(usuarios);
     }
