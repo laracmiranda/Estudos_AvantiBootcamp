@@ -1,4 +1,4 @@
-# 📘 Aula 04 – ORM com Prisma
+# 📘 Aula 03 – ORM com Prisma
 
 > Nesta aula aprendemos o que é um ORM, suas vantagens e como utilizá-lo na prática com o Prisma no Node.js para facilitar a comunicação com bancos de dados relacionais.
 
