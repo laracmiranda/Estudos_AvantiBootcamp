@@ -11,7 +11,7 @@ const userController = new UserController();
 const loginController = new LoginController();
 
 // User Routes
-router.get("/usuarios", authenticate, userController.findAllUsers)
+router.get("/usuarios", authorization, userController.findAllUsers)
 router.post("/usuarios", userController.createUser)
 router.put("/usuarios/:id", userController.updateUser)
 router.delete("/usuarios/:id", userController.deleteUser)

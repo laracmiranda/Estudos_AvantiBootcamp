@@ -3,24 +3,24 @@ import jwt from "jsonwebtoken";
 export default function (request, response, next){
     const { authorization } = request.headers;
 
-    //Verifica se o usuário está autenticado 
+    // Verifica se o usuário está autenticado 
     if (!authorization){
-        return response.status(401).json({"error:": "Token not found"})
+        return response.status(401).json({"error:": "Token não encontrado"})
     }
 
-    //Verifica se o token está gerado e se foi gerado pela nossa API
+    // Verifica se o token está gerado e se foi gerado pela nossa API
     try {
         const token = authorization.replace("Bearer ", "");
         const { isAdmin } = jwt.decode(token, process.env.SECRET_JWT);
 
         if (!isAdmin){
-          return response.status(403).json({"error:": "Unauthorized"})  
+          return response.status(403).json({"error:": "Unauthorized - Usuário não é Admin!"})  
         }
 
         //Chama o próximo método definido na rota
         next();
 
     } catch(error){
-        return response.status(401).json({"error:": "Token not found"})
+        return response.status(401).json({"error:": "Token inválido"})
     }
 }
