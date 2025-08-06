@@ -11,12 +11,12 @@ const userController = new UserController();
 const loginController = new LoginController();
 
 // User Routes
-router.get("/usuarios", authorization, userController.findAllUsers)
+router.get("/usuarios", authenticate, userController.findAllUsers)
 router.post("/usuarios", userController.createUser)
 router.put("/usuarios/:id", userController.updateUser)
 router.delete("/usuarios/:id", userController.deleteUser)
 
-// Login
+// Login Routes
 router.post("/login", loginController.login)
 
 export { router }

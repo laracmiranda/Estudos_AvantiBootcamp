@@ -5,6 +5,7 @@ export class UserController {
 
     async findAllUsers (request, response) {
     const usuarios = await prismaClient.user.findMany({
+        // Não retornar a senha na requisição ao buscar todos os usuários
         select: {id: true, name: true, email: true, phone: true, isAdmin: true}
     });
     return response.status(200).json(usuarios);
@@ -12,13 +13,15 @@ export class UserController {
 
     async createUser (request, response) {
         const { name, email, password, isAdmin, phone } = request.body;
-
+    
+        // Recebe 2 parâmetros: String(senha) e Salt(10 caracteres aleatórios) - Gera o hash
         const passhash = bcrypt.hashSync(password, 10);
     
         const usuarios = await prismaClient.user.create({
             data:{ 
                 name: name, email, phone, password: passhash, isAdmin
             },
+            // Não retornar a senha na requisição após criar o usuário
             select: {id: true, name: true, email: true, phone: true, isAdmin: true}
     })
         return response.status(201).json(usuarios);
