@@ -1,8 +1,11 @@
 import { Box, Button, Container, FormControlLabel, Paper, Switch, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export function UserForm (){
+    const navigate = useNavigate();
+
     const [form, setForm] = useState({
         name: "",
         email: "",
@@ -13,6 +16,7 @@ export function UserForm (){
 
     const handleSubmit = async () => {
         const response = await axios.post("http://localhost:8080/usuarios", form);
+        navigate("/");
     }
 
     return (
