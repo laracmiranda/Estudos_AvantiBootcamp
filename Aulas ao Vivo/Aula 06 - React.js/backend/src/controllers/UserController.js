@@ -9,7 +9,7 @@ export class UserController {
         select: {id: true, name: true, email: true, phone: true, isAdmin: true}
     });
     return response.status(200).json(usuarios);
-}
+    }
 
     async createUser (request, response) {
         const { name, email, password, isAdmin, phone } = request.body;
@@ -49,21 +49,22 @@ export class UserController {
         return response.status(200).json(usuarios);
     }
 
-    async deleteUser (request, response) {
+    async deleteUser(request, response) {
     const { id } = request.params;
 
-    const user = await prismaClient.user.findUnique({
-        where: { id }
-    })
+    try {
+      const user = await prismaClient.user.findUnique({ where: { id } });
 
-    if (!user){
-        return response.status(404).json("Usuário nao encontrado");
+      if (!user) {
+        return response.status(404).json({ error: "Usuário não encontrado" });
+      }
+
+      await prismaClient.user.delete({ where: { id } });
+
+      return response.status(204).send();
+
+    } catch (error) {
+      return response.status(500).json({ error: "Internal server error" });
     }
-
-    await prismaClient.user.delete({
-        where: { id }
-    });
-
-    return response.status(204).send();
     }
 }
