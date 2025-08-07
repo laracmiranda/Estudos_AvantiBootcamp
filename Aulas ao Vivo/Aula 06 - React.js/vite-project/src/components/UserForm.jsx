@@ -1,10 +1,13 @@
 import { Box, Button, Container, FormControlLabel, Paper, Switch, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export function UserForm (){
     const navigate = useNavigate();
+
+    // Assim que renderiza o usuário, busca dentro da URL o que é referente ao ID
+    const { id } = useParams();
 
     const [form, setForm] = useState({
         name: "",
@@ -15,7 +18,11 @@ export function UserForm (){
     })
 
     const handleSubmit = async () => {
-        const response = await axios.post("http://localhost:8080/usuarios", form);
+        if (id){
+            const response = await axios.put("http://localhost:8080/usuarios", form);
+        } else {
+            const response = await axios.post("http://localhost:8080/usuarios", form);
+        }
         navigate("/");
     }
 
@@ -23,7 +30,7 @@ export function UserForm (){
         <Container maxWidth="sm" sx={{mt : 4}}>
             <Paper elevation={3} sx={{p: 4}}>
                 <Typography variant="h5">
-                    Criar Usuário
+                    {id ? "Editar Usuário" : "Criar Usuário"}
                 </Typography>
                 <TextField
                 label="Nome"
@@ -63,7 +70,9 @@ export function UserForm (){
                     }
                 />
             <Box mt={3}>
-                <Button variant="contained" onClick={handleSubmit}>Cadastrar</Button>
+                <Button variant="contained" onClick={handleSubmit}>
+                    {id ? "Salvar alterações" : "Cadastrar"}
+                </Button>
             </Box>
             </Paper>
         </Container>

@@ -3,9 +3,12 @@ import { Typography, Grid, CardContent, Card, CardActions, IconButton, Switch } 
 import axios from "axios";
 import EditIcon from "@mui/icons-material/Edit"
 import DeleteIcon from "@mui/icons-material/Delete"
+import PersonAddIcon from "@mui/icons-material/PersonAdd"
+import { useNavigate } from "react-router-dom";
 
  export function UserCard(props) {
     const [users, setUsers] = useState([]);
+    const navigate = useNavigate();
 
     const getUsers = async () => {
         const response = await axios.get("http://localhost:8080/usuarios");
@@ -17,6 +20,8 @@ import DeleteIcon from "@mui/icons-material/Delete"
         if (window.confirm("Deseja realmente excluir o usuário?")) {
             await axios.delete(`http://localhost:8080/usuarios/${id}` );
         }
+        // Recarregar a página depois de realizada a ação de deletar
+        getUsers();
     }
 
     useEffect(() => {getUsers(); }, [])
@@ -24,6 +29,9 @@ import DeleteIcon from "@mui/icons-material/Delete"
     return(
         <>
             <Typography variant="h4"> Usuários </Typography>
+            <IconButton color="primary" onClick={() => navigate("/registro")}> 
+                <PersonAddIcon />
+            </IconButton>
             <Grid container spacing={3}>
                 {users.map((user) => (
                     <Grid key={user.id}>
@@ -37,11 +45,11 @@ import DeleteIcon from "@mui/icons-material/Delete"
                                 </Typography>
                             </CardContent>
                             <CardActions>
-                                <IconButton color="primary">
+                                <IconButton color="primary" onClick={() => navigate(`/editar-usuario/${user.id}`)}>
                                     <EditIcon />
                                 </IconButton>
-                                <IconButton color="error">
-                                    <DeleteIcon onClick={() => handleDelete(user.id)}/>
+                                <IconButton color="error" onClick={() => handleDelete(user.id)}>
+                                    <DeleteIcon />
                                 </IconButton>
                             </CardActions>
                         </Card>
