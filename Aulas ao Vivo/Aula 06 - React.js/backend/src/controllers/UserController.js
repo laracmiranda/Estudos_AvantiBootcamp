@@ -11,6 +11,20 @@ export class UserController {
     return response.status(200).json(usuarios);
     }
 
+    async findUser(request, response) {
+        const { id } = request.params;
+
+        try {
+        const usuario = await prismaClient.user.findUnique({
+            where: { id },
+            select: { id: true, name: true, email: true, phone: true, isAdmin: true },
+        });
+        return response.status(200).json(usuario);
+        } catch (error) {
+        return response.status(500).json({ error: "Internal server error" });
+        }
+    }
+
     async createUser (request, response) {
         const { name, email, password, isAdmin, phone } = request.body;
     

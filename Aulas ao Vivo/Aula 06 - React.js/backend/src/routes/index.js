@@ -12,6 +12,7 @@ const loginController = new LoginController();
 
 // User Routes
 router.get("/usuarios", userController.findAllUsers)
+router.get("/usuario/:id", userController.findUser)
 router.post("/usuarios", userController.createUser)
 router.put("/usuarios/:id", userController.updateUser)
 router.delete("/usuarios/:id", userController.deleteUser)

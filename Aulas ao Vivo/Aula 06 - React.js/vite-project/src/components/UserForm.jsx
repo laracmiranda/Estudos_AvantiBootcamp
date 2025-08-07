@@ -2,6 +2,7 @@ import { Box, Button, Container, FormControlLabel, Paper, Switch, TextField, Typ
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { useEffect } from "react";
 
 export function UserForm (){
     const navigate = useNavigate();
@@ -15,6 +16,13 @@ export function UserForm (){
         password: "",
         phone: "",
         isAdmin: false
+    })
+
+    useEffect(() => {
+        if(id){
+            axios.get(`http://localhost:8080/usuario/${id}`)
+            .then(res => setForm(res.data))
+        }
     })
 
     const handleSubmit = async () => {
@@ -69,11 +77,11 @@ export function UserForm (){
                         />
                     }
                 />
-            <Box mt={3}>
-                <Button variant="contained" onClick={handleSubmit}>
-                    {id ? "Salvar alterações" : "Cadastrar"}
-                </Button>
-            </Box>
+                <Box mt={3}>
+                    <Button variant="contained" onClick={handleSubmit}>
+                        {id ? "Salvar alterações" : "Cadastrar"}
+                    </Button>
+                </Box>
             </Paper>
         </Container>
     )
