@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Typography, Grid, CardContent, Card, CardActions, IconButton } from '@mui/material';
+import { Typography, Grid, CardContent, Card, CardActions, IconButton, Switch } from '@mui/material';
 import axios from "axios";
 import EditIcon from "@mui/icons-material/Edit"
 import DeleteIcon from "@mui/icons-material/Delete"
@@ -8,8 +8,9 @@ import DeleteIcon from "@mui/icons-material/Delete"
     const [users, setUsers] = useState([]);
 
     const getUsers = async () => {
-        const { data } = await axios.get("http://localhost:8080/usuarios")
-        setUsers(data);
+        const response = await axios.get("http://localhost:8080/usuarios");
+        console.log(response)
+        setUsers(response.data);
     }
 
     const handleDelete = async (id) => {
@@ -28,10 +29,12 @@ import DeleteIcon from "@mui/icons-material/Delete"
                     <Grid key={user.id}>
                         <Card>
                             <CardContent>
-                                <Typography>{user.name}</Typography>
-                                <Typography>{user.email}</Typography>
-                                <Typography>{user.phone}</Typography>
-                                <Typography>{user.isAdmin}</Typography>
+                                <Typography variant="h6">{user.name}</Typography>
+                                <Typography variant="body2">{user.email}</Typography>
+                                <Typography variant="body2">{user.phone}</Typography>
+                                <Typography variant="body2">
+                                    Admin: <Switch checked={user.isAdmin} disabled/>
+                                </Typography>
                             </CardContent>
                             <CardActions>
                                 <IconButton color="primary">
