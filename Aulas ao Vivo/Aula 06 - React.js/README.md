@@ -1,166 +1,201 @@
-# 📘 Aula 05 – Fundamentos de Front-End e Introdução ao React
+# 📚 Aula 06 – React.js
 
-> Nesta aula vimos os fundamentos do front-end com HTML, CSS, responsividade com Flexbox e uma introdução prática ao ReactJS com Vite.
-
----
-
-## 🎨 O que é Front-End?
-
-Parte de um sistema com a qual o **usuário interage diretamente**. Inclui:
-- Interfaces gráficas
-- Layouts
-- Botões, formulários e elementos visuais
-
-🔍 É essencial pensar na **experiência do usuário (UX)** ao construir o front-end.
+> Nessa aula vimos mais sobre o react e como integrar e consumir a API criada nas aulas anteriores no frontend da aplicação
 
 ---
 
-## 🧱 HTML e CSS
+## 📌 Axios
 
-### 🔤 HTML – Linguagem de Marcação
-
-Define a **estrutura e conteúdo** de uma página web (texto, imagens, links, multimídia).
-
-#### 🏷️ Principais tags HTML:
-
-| Tipo            | Exemplos |
-|-----------------|----------|
-| **Cabeçalho**   | `<html>`, `<head>`, `<title>` |
-| **Corpo**       | `<body>`, `<h1>`, `<p>`, `<ul>`, `<li>`, `<a>`, `<img>` |
-| **Estruturação**| `<div>`, `<section>`, `<header>`, `<footer>`, `<main>` |
-| **Formatação**  | `<em>`, `<strong>`, `<b>`, `<i>`, `<u>`, `<code>`, `<blockquote>` |
-| **Formulário**  | `<form>`, `<input>`, `<label>`, `<select>`, `<button>` |
+O **Axios** é uma biblioteca do JavaScript para fazer requisições HTTP de forma assíncrona, tanto em navegadores quanto no Node.js.
+Oferece uma interface simples para realizar operações como **GET**, **POST**, **PUT** e **DELETE**, além de suportar interceptadores para personalizar solicitações e respostas.
+Ele é muito utilizado para interagir com APIs em aplicações JavaScript.
 
 ---
 
-### 🎨 CSS – Estilização
+## ✨ Características do Axios
 
-Define o **visual** da página: cores, espaçamentos, fontes, animações, etc.
+* **Sintaxe simples e intuitiva**
+  Interface fácil de usar, com métodos simples para as requisições HTTP.
 
-#### 📌 Características do CSS:
+* **Suporte a Promessas**
+  Utiliza *promises* para operações assíncronas, facilitando o tratamento de solicitações e respostas.
 
-- **Seletores**: Define quais elementos serão estilizados (`.classe`, `#id`, `tag`)
-- **Propriedades e valores**: Define o estilo aplicado
-- **Cascata**: Regras aplicadas em ordem de precedência
-- **Compatibilidade entre navegadores**
-- **Reutilização e modularidade**
-- **Layout responsivo** com:
-  - `Media queries`
-  - `Flexbox`
-  - `Grid`
-- **Animações e transições**: Sem uso de JS
+* **Interceptadores**
+  Permite interceptar solicitações e respostas de forma global, facilitando adição de cabeçalhos, tratamento de erros e manipulações centralizadas.
+
+* **Suporte a cancelamento de requisições**
+  Possibilita cancelar solicitações pendentes, evitando processamento desnecessário e vazamentos de memória.
 
 ---
 
-## 📱 Responsividade com Flexbox
+## ⚙️ Parte prática
 
-Permite criar layouts adaptáveis a diferentes dispositivos de forma simples.
-
-### ⚙️ Conceitos do Flexbox:
-
-- **Container flexível**: `display: flex;`
-- **Direção do layout**: `flex-direction: row | column`
-- **Alinhamento e justificação**: `justify-content`, `align-items`
-- **Redimensionamento e reorganização** automática dos itens filhos
-
-📌 **Resumo**:
-- `HTML` → Estrutura  
-- `CSS` → Estilo  
-- `JavaScript` → Ação
-
----
-
-## ⚛️ ReactJS – Introdução
-
-**React** é uma biblioteca JavaScript para criar interfaces de usuário **dinâmicas** e **reutilizáveis**.
-
-### 🧩 Principais conceitos:
-
-- **Componentes**: Partes independentes da interface
-- **Props**: Permite passar dados de um componente pai para um filho
-- **State**: Armazena informações mutáveis no componente
-- **JSX**: Sintaxe que mistura HTML com JavaScript
-- **Virtual DOM**: Atualiza apenas o necessário, otimizando performance
-
----
-
-## 🧬 Componentes em React
-
-### 📦 Componentes de Classe
-
-```js
-class MeuComponente extends React.Component {
-  componentDidMount() {}
-  componentDidUpdate() {}
-  componentWillUnmount() {}
-}
-````
-
-* `componentDidMount`: Após renderizar
-* `componentDidUpdate`: Após atualizar
-* `componentWillUnmount`: Antes de remover do DOM
-
----
-
-### 🧪 Componentes Funcionais com Hooks
-
-Utilizam funções JavaScript + hooks para acessar estado, efeitos, etc.
-
-```js
-useEffect(() => {
-  // efeito
-  return () => {
-    // limpeza
-  };
-}, [dependências]);
-```
-
-| Fase        | Hook Equivalente                        |
-| ----------- | --------------------------------------- |
-| Montagem    | `useEffect()`                           |
-| Atualização | `useEffect()` (com deps)                |
-| Desmontagem | `return () => {}` dentro do `useEffect` |
-
----
-
-## 🪝 Principais Hooks do React
-
-| Hook          | Função                                      |
-| ------------- | ------------------------------------------- |
-| `useState`    | Armazena e altera estados locais            |
-| `useEffect`   | Lida com efeitos colaterais (fetch, timers) |
-| `useContext`  | Acessa dados globais do contexto            |
-| `useReducer`  | Gerencia estados complexos                  |
-| `useCallback` | Memoriza funções                            |
-| `useMemo`     | Memoriza valores calculados                 |
-
-✅ **Vantagens dos hooks**:
-
-* Simplicidade
-* Reutilização de lógica
-* Flexibilidade
-
----
-
-## 🛠️ Parte Prática – React com Vite
-
-### 🚀 Criando um projeto com Vite + React
+### 1️⃣ Instalação de bibliotecas
 
 ```bash
-npm create vite@latest nome-da-pasta
-# Escolher: Framework → React
-# Variant → JavaScript + SWC
-
-cd nome-da-pasta
-npm install
-npm run dev
+npm install axios
+npm install cors
+npm install react-router-dom
 ```
 
-### 📂 Componentes
+* **Axios** → Requisições HTTP.
+* **CORS** → Faz com que o backend reconheça o frontend e autorize requisições, mesmo em portas (*hosts*) diferentes.
+* **React Router DOM** → Controle de rotas no frontend.
 
-* Criamos um componente simples para entender como passar **propriedades (`props`)** entre componentes.
-* Exploramos a criação de componentes reutilizáveis e o uso de `useState` para controlar dados dentro da interface.
+Bibliotecas de estilização:
+
+```
+mui-material
+mui/icons-material
+emotion/react
+emotion/styled
+```
 
 ---
 
-📌 *A aula apresentou os principais fundamentos de desenvolvimento front-end e deu os primeiros passos práticos com ReactJS.*
+### 2️⃣ Alterações no projeto
+
+* Removido o código da aula anterior para criar um novo conectado à API desenvolvida anteriormente.
+
+---
+
+## 📂 Componentes criados
+
+### **`UserCard.jsx`**
+
+* Criado para exibir usuários.
+
+* Estado para armazenar usuários:
+
+  ```javascript
+  const [users, setUsers] = useState([]);
+  ```
+
+* **Requisição GET** para buscar usuários:
+
+  ```javascript
+  const getUsers = async () => {
+    const { data } = await axios.get("http://localhost:porta/");
+  }
+  ```
+
+* **Exibição com `map`**:
+
+  ```javascript
+  users.map((user) => (
+    <Informações dos usuários>
+  ))
+  ```
+
+* **Botão de delete**:
+
+  ```javascript
+  const handleDelete = async (id) => {
+    if (window.confirm("Deseja realmente excluir o usuário?")) {
+      await axios.delete(`http://localhost:porta/usuarios/${id}`);
+    }
+  }
+  ```
+
+  * Uso no botão:
+
+    ```jsx
+    onClick={handleDelete}
+    ```
+
+* **Botão de edição (`PUT`)** usando `useParams`:
+
+  ```javascript
+  const { id } = useParams();
+
+  if (id) {
+    await axios.put("http://localhost:8080/usuarios", form);
+  } else {
+    await axios.post("http://localhost:8080/usuarios", form);
+  }
+  ```
+
+* **Botão para criar usuário** → direciona ao formulário.
+
+* **Título e botão dinâmicos**:
+
+  ```javascript
+  {id ? "Editar Usuário" : "Criar Usuário"}
+  ```
+
+* **Buscar usuário para edição**:
+
+  ```javascript
+  const findUser = async () => {
+    if (id) {
+      const response = await axios.get(`http://localhost:porta/usuario/${id}`);
+      setForm(response.data);
+    }
+  }
+  useEffect(() => { findUser(); }, []);
+  ```
+
+* **Filtro de busca**:
+
+  ```javascript
+  const [search, setSearch] = useState("");
+  const usuariosFiltrados = users.filter((user) =>
+    [user.name, user.email, user.phone].some(field =>
+      field?.toLowerCase().includes(search.toLowerCase())
+    )
+  );
+  ```
+
+---
+
+### **`UserForm.jsx`**
+
+* Formulário para criar/editar usuários.
+
+* Estado do formulário:
+
+  ```javascript
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    password: "",
+    phone: "",
+    isAdmin: false
+  });
+  ```
+
+* **`onChange` nos inputs**:
+
+  ```javascript
+  onChange={(e) => setForm({ ...form, name: e.target.value })}
+  ```
+
+* **Enviar formulário (`POST`)**:
+
+  ```javascript
+  const handleSubmit = async () => {
+    await axios.post("http://localhost:porta/usuarios", form);
+  }
+  ```
+
+* **Navegar após envio**:
+
+  ```javascript
+  const navigate = useNavigate();
+  navigate("/rota");
+  ```
+
+---
+
+## 📌 `App.js`
+
+Mapeamento de rotas com `react-router-dom`:
+
+```jsx
+<BrowserRouter>
+  <Routes>
+    <Route path="/" element={<UserCard />} />
+    <Route path="/registro" element={<UserForm />} />
+  </Routes>
+</BrowserRouter>
+```
