@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Typography, Grid, CardContent, Card, CardActions, IconButton, Switch } from '@mui/material';
+import { Typography, Grid, CardContent, Card, CardActions, IconButton, Switch, TextField, Box } from '@mui/material';
 import axios from "axios";
 import EditIcon from "@mui/icons-material/Edit"
 import DeleteIcon from "@mui/icons-material/Delete"
@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
  export function UserCard(props) {
     const [users, setUsers] = useState([]);
+    const [search, setSearch] = useState("");
     const navigate = useNavigate();
 
     const getUsers = async () => {
@@ -26,14 +27,33 @@ import { useNavigate } from "react-router-dom";
 
     useEffect(() => {getUsers(); }, [])
 
+    const usuariosFiltrados = users.filter((user) => 
+        // Cria um array com os campos referente à um usuário por vez
+        [user.name, user.email, user.phone].some( field => 
+            // Verifica se o campo está preenchido e converte tudo em lowCase
+            field?.toLowerCase().includes(search.toLowerCase())
+        )
+    )
+
     return(
         <>
             <Typography variant="h4"> Usuários </Typography>
-            <IconButton color="primary" onClick={() => navigate("/registro")}> 
-                <PersonAddIcon />
-            </IconButton>
+            <Box>
+                <IconButton color="primary" onClick={() => navigate("/registro")}> 
+                    <PersonAddIcon />
+                </IconButton>
+            </Box>
+            <TextField
+                label="Buscar"
+                size="small"
+                sx={{maxWidth: 400, mb: 2 }}
+                fullWidth
+                margin="normal"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+            />
             <Grid container spacing={3}>
-                {users.map((user) => (
+                {usuariosFiltrados.map((user) => (
                     <Grid key={user.id}>
                         <Card>
                             <CardContent>
