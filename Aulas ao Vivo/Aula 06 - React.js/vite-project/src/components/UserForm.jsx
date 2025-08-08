@@ -18,16 +18,18 @@ export function UserForm (){
         isAdmin: false
     })
 
-    useEffect(() => {
+    const findUser = async () => {
         if(id){
-            axios.get(`http://localhost:8080/usuario/${id}`)
-            .then(res => setForm(res.data))
+            const response = await axios.get(`http://localhost:8080/usuario/${id}`)
+            setForm(response.data);
         }
-    })
+    }
+
+    useEffect(() => { findUser(); }, [])
 
     const handleSubmit = async () => {
         if (id){
-            const response = await axios.put("http://localhost:8080/usuarios", form);
+            const response = await axios.put(`http://localhost:8080/usuarios/${id}`, form);
         } else {
             const response = await axios.post("http://localhost:8080/usuarios", form);
         }
@@ -79,7 +81,7 @@ export function UserForm (){
                 />
                 <Box mt={3}>
                     <Button variant="contained" onClick={handleSubmit}>
-                        {id ? "Salvar alterações" : "Cadastrar"}
+                        {id ? "Salvar" : "Cadastrar"}
                     </Button>
                 </Box>
             </Paper>

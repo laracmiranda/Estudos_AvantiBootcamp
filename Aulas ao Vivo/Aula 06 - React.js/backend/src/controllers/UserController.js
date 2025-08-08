@@ -42,25 +42,28 @@ export class UserController {
     }
 
     async updateUser (request, response) {
-        const { name, email, phone } = request.body;
         const { id } = request.params;
+        const { name, email, phone, isAdmin, password } = request.body;    
     
-        const user = await prismaClient.user.findUnique({
-            where: { id }
-        })
-    
-        if (!user){
-            return response.status(404).json("Usuário nao encontrado");
-        }
-    
-        const usuarios = await prismaClient.user.update({
-            where: { id },
-            data:{
-                name, email, phone
+        try{
+            const user = await prismaClient.user.findUnique({
+                where: { id }
+            })
+        
+            if (!user){
+                return response.status(404).json("Usuário nao encontrado");
             }
-        })
-    
-        return response.status(200).json(usuarios);
+        
+            const usuarios = await prismaClient.user.update({
+                where: { id },
+                data:{ name, email, phone, isAdmin, password },
+                select: { id:true, name:true, email:true, phone:true }
+            });
+            return response.status(200).json(usuarios);
+        
+        } catch (error){
+            return response.status(500).json({ error: "Erro interno do servidor"});
+        }
     }
 
     async deleteUser(request, response) {
