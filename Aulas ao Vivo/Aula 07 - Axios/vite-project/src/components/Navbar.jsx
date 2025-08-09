@@ -3,13 +3,14 @@ import { useNavigate } from "react-router-dom";
 import MemoryIcon from "@mui/icons-material/Memory";
 //import { useAuth } from "../context/AuthContext";
 import LogoutIcon from "@mui/icons-material/Logout";
+import { red } from "@mui/material/colors";
 
 export function Navbar() {
   const navigate = useNavigate();
 
   return (
     <AppBar position="static">
-      <Toolbar sx={{ justifyContent: "space-between" }}>
+      <Toolbar sx={{ justifyContent: "space-between"}}>
         <IconButton edge="start" color="inherit" onClick={() => navigate("/")}>
           <MemoryIcon fontSize="large" />
         </IconButton>

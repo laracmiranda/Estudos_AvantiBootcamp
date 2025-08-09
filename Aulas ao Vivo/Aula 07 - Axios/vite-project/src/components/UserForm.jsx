@@ -1,11 +1,16 @@
-import { Box, Button, Container, FormControlLabel, Paper, Switch, TextField, Typography } from "@mui/material";
+import { Box, Button, Container, FormControlLabel, IconButton, Paper, Switch, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { createUser, getUserById, updateUser } from "../api/serviceApi";
 
 export function UserForm (){
     const navigate = useNavigate();
+
+    // Estado para exibição da senha
+    const [show, setShow] = useState(false);
 
     // Assim que renderiza o usuário, busca dentro da URL o que é referente ao ID
     const { id } = useParams();
@@ -18,23 +23,20 @@ export function UserForm (){
         isAdmin: false
     })
 
-    const findUser = async () => {
-        if(id){
-            const response = await axios.get(`http://localhost:8080/usuario/${id}`)
-            setForm(response.data);
+    useEffect(() => {
+        if (id) {
+        getUserById(id).then(res => setForm(res.data));
         }
-    }
-
-    useEffect(() => { findUser(); }, [])
+    }, [id]);
 
     const handleSubmit = async () => {
-        if (id){
-            const response = await axios.put(`http://localhost:8080/usuarios/${id}`, form);
+        if (id) {
+        await updateUser(id, form);
         } else {
-            const response = await axios.post("http://localhost:8080/usuarios", form);
+        await createUser(form);
         }
-        navigate("/");
-    }
+        navigate("/usuarios");
+    };
 
     return (
         <Container maxWidth="sm" sx={{mt : 4}}>
@@ -66,11 +68,19 @@ export function UserForm (){
                 <TextField
                 label="Senha"
                 fullWidth
-                type="password"
+                type={show ? 'text' : 'password'}
                 margin="normal"
                 value={form.password}
                 onChange={(e) => setForm({...form, password: e.target.value })}
-                />
+                slotProps={{
+                    input: {
+                        endAdornment: (
+                            <IconButton onClick={() => setShow(!show)}>
+                                {show ? <Visibility /> : <VisibilityOff />}
+                            </IconButton>
+                        ),
+                    }
+                }}/>
                 <FormControlLabel
                     label="Admin"
                     control={

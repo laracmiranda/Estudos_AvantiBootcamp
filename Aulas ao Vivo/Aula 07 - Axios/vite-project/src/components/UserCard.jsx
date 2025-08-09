@@ -5,27 +5,29 @@ import EditIcon from "@mui/icons-material/Edit"
 import DeleteIcon from "@mui/icons-material/Delete"
 import PersonAddIcon from "@mui/icons-material/PersonAdd"
 import { useNavigate } from "react-router-dom";
+import { getUsers, deleteUser } from "../api/serviceApi";
+
 
  export default function UserCard(props) {
     const [users, setUsers] = useState([]);
     const [search, setSearch] = useState("");
     const navigate = useNavigate();
 
-    const getUsers = async () => {
-        const response = await axios.get("http://localhost:8080/usuarios");
+    const fetchUsers = async () => {
+        const response = await getUsers();
         console.log(response)
         setUsers(response.data);
     }
 
     const handleDelete = async (id) => {
         if (window.confirm("Deseja realmente excluir o usuário?")) {
-            await axios.delete(`http://localhost:8080/usuarios/${id}` );
+            await deleteUser(id);
         }
         // Recarregar a página depois de realizada a ação de deletar
-        getUsers();
+        fetchUsers();
     }
 
-    useEffect(() => {getUsers(); }, [])
+    useEffect(() => {fetchUsers(); }, [])
 
     const usuariosFiltrados = users.filter((user) => 
         // Cria um array com os campos referente à um usuário por vez
@@ -55,7 +57,7 @@ import { useNavigate } from "react-router-dom";
             <Grid container spacing={3}>
                 {usuariosFiltrados.map((user) => (
                     <Grid key={user.id}>
-                        <Card sx={{width: 200}}>
+                        <Card sx={{width: 230}}>
                             <CardContent>
                                 <Box sx={{display: "flex", alignItems: "center", mb: 1}}>
                                     <Avatar 
