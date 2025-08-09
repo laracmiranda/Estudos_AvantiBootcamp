@@ -53,10 +53,19 @@ export class UserController {
             if (!user){
                 return response.status(404).json("Usuário nao encontrado");
             }
+
+            const dataToUpdate = {
+                name, email, phone, isAdmin,
+            };
+
+            if (password){
+                const hashedPassword = bcrypt.hashSync(password, 10);
+                dataToUpdate.password = hashedPassword;
+            }
         
             const usuarios = await prismaClient.user.update({
                 where: { id },
-                data:{ name, email, phone, isAdmin, password },
+                data: dataToUpdate,
                 select: { id:true, name:true, email:true, phone:true }
             });
             return response.status(200).json(usuarios);
