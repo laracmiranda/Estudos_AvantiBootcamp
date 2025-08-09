@@ -26,6 +26,7 @@ Repositório com os resumos e códigos dos meus estudos no bootcamp oferecido pe
 
 - [**Aula 05 - Introdução ao Desenvolvimento Front-end e Responsividade**](./Aulas%20ao%20Vivo/Aula%2005%20-%20Introdução%20ao%20Desenvolvimento%20Front-end%20e%20Responsividade/)
 - [**Aula 06 - React.js**](./Aulas%20ao%20Vivo/Aula%2006%20-%20React.js/)
+- [**Aula 07 - Axios**](./Aulas%20ao%20Vivo/Aula%2007%20-%20Axios/)
 
 ---
 
