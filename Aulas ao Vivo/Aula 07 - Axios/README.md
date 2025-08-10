@@ -1,4 +1,4 @@
-# 📘 Aula 07 – Axios
+# 📘 Aula 07 – React.js
 
 > Nessa aula vimos como criar o login e lógicas de contexto para nossa aplicação.
 
