@@ -6,11 +6,13 @@ import DeleteIcon from "@mui/icons-material/Delete"
 import PersonAddIcon from "@mui/icons-material/PersonAdd"
 import { useNavigate } from "react-router-dom";
 import { getUsers, deleteUser } from "../api/serviceApi";
-
+import { useAuth } from "../context/AuthContext";
 
  export default function UserCard(props) {
     const [users, setUsers] = useState([]);
     const [search, setSearch] = useState("");
+    const { userId } = useAuth();
+
     const navigate = useNavigate();
 
     const fetchUsers = async () => {
@@ -72,14 +74,22 @@ import { getUsers, deleteUser } from "../api/serviceApi";
                                     Admin: <Switch checked={user.isAdmin} disabled/>
                                 </Typography>
                             </CardContent>
+
                             <CardActions>
-                                <IconButton color="primary" onClick={() => navigate(`/editar-usuario/${user.id}`)}>
+                                <IconButton 
+                                    disabled={userId != user.id}
+                                    color="primary" 
+                                    onClick={() => navigate(`/editar-usuario/${user.id}`)}>
                                     <EditIcon />
                                 </IconButton>
-                                <IconButton color="error" onClick={() => handleDelete(user.id)}>
+                                <IconButton 
+                                    disabled={userId != user.id}
+                                    color="error" 
+                                    onClick={() => handleDelete(user.id)}>
                                     <DeleteIcon />
                                 </IconButton>
                             </CardActions>
+
                         </Card>
                     </Grid>
                 ))}
