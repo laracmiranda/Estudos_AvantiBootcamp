@@ -1,5 +1,7 @@
 import jwt from "jsonwebtoken";
 
+//* Verifica se o usuário é válido, ou seja, se ele está autenticado!
+
 export default function (request, response, next){
     const { authorization } = request.headers;
 

@@ -26,7 +26,7 @@ export class LoginController {
 
         // Se o usuário chegou até aqui, quer dizer que o email e a senha dele são válidos
         
-        // -- Gerando token para autenticação -- 
+        //* -- Gerando token para autenticação -- 
 
         // Informações que iremos guardar dentro do token
         const payload = { userId: user.id, isAdmin: user.isAdmin }
