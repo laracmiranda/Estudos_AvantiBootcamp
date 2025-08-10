@@ -10,4 +10,4 @@ export const createUser = (data) => API.post("/usuarios", data);
 export const updateUser = (id, data) => API.put(`/usuarios/${id}`, data);
 export const deleteUser = (id) => API.delete(`/usuarios/${id}`);
 
-export const login = (data) => API.post("/login", data);
+export const sign = (data) => API.post("/login", data);

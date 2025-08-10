@@ -1,12 +1,17 @@
 import { AppBar, Toolbar, Button, Box, IconButton } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import MemoryIcon from "@mui/icons-material/Memory";
-//import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/AuthContext";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { red } from "@mui/material/colors";
 
 export function Navbar() {
   const navigate = useNavigate();
+  const { logout } = useAuth ();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  }
 
   return (
     <AppBar position="static">
@@ -17,6 +22,7 @@ export function Navbar() {
         <Box>
           <Button color="inherit" onClick={() => navigate("/")}>Início</Button>
           <Button color="inherit" onClick={() => navigate("/usuarios")}>Usuários</Button>
+          <Button color="inherit" onClick={handleLogout}><LogoutIcon /></Button>
         </Box>
       </Toolbar>
     </AppBar>

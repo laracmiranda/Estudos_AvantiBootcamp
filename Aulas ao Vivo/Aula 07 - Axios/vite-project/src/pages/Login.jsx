@@ -1,19 +1,25 @@
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { Box, Button, Container, IconButton, Paper, TextField, Typography } from "@mui/material";
 import { useState } from "react";
-import { login } from "../api/serviceApi";
+import { sign } from "../api/serviceApi";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 export function Login() {
     const [ email, setEmail ] = useState("");
     const [ password, setPassword ] = useState("");
     const [show, setShow] = useState(false);
+    const [error, setError] = useState(false);
     const navigate = useNavigate();
+    const { login } = useAuth();
 
     const handleLogin = async () => {
-        const response = await login({ email, password });
+        const response = await sign({ email, password });
         if(response.status == 200){
+            login(response.data);
             navigate("/")
+        } else {
+            setError(true);
         }
     }
 
@@ -52,6 +58,7 @@ export function Login() {
                         onClick={handleLogin}>
                             Entrar
                         </Button>
+                        {error && <p color="red">Usuário ou e-mail inválidos</p>}
                     </Paper>
             </Container>
         </Box>

@@ -57,7 +57,7 @@ import { getUsers, deleteUser } from "../api/serviceApi";
             <Grid container spacing={3}>
                 {usuariosFiltrados.map((user) => (
                     <Grid key={user.id}>
-                        <Card sx={{width: 230}}>
+                        <Card sx={{width: 220}}>
                             <CardContent>
                                 <Box sx={{display: "flex", alignItems: "center", mb: 1}}>
                                     <Avatar 
