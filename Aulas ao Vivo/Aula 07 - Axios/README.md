@@ -206,6 +206,7 @@ const handleLogout = () => {
 Criando lógica de contexto para bloquear todas quando o usuário não estiver logado
 
 **Como funciona?** 🤔
+<br/>
 Se tiver o userId no meu contexto, significa que o usuário está logado
 
 Então recebemos um componente, que pode ser qualquer uma de nossas páginas e, caso existir o userId, o componente será renderizado. Caso não receba, o usuário será direcionado para a página inicial ou de login
@@ -236,7 +237,7 @@ function App() {
 }
 ```
 
-Assim, as páginas só são acessíveis se o usuário estiver logado!
+**Assim, as páginas só são acessíveis se o usuário estiver logado!**
 
 ---
 
