@@ -20,7 +20,6 @@ Repositório com os resumos e códigos dos meus estudos no bootcamp oferecido pe
 - [**Aula 02 - Introdução ao Desenvolvimento Backend**](./Aulas%20ao%20Vivo/Aula%2002%20-%20Introdução%20ao%20Desenvolvimento%20Backend/)
 - [**Aula 03 - PrismaORM**](./Aulas%20ao%20Vivo/Aula%2003%20-%20PrismaORM/)
 - [**Aula 04 - Autenticação e Autorização**](./Aulas%20ao%20Vivo/Aula%2004%20-%20Autenticação%20e%20Autorização/)
-- [**Atividade de Banco de Dados**](./Aulas%20ao%20Vivo/Atividade%20de%20Banco%20de%20Dados/Atividade%2001%20-%20Banco%20de%20Dados%20-%20DFS%202025.2%20-%20Lara%20Corsini.pdf)
 
 #### 📱 Frontend
 
